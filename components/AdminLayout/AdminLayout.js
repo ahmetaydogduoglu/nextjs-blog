@@ -1,12 +1,10 @@
-
 //components
-import Navbar from "../Navbar/index"
 import Head from "../Head/head"
-const index = (props) => {
+
+const AdminIndex = (props) => {
     return (
         <div>
             <Head title={props.title} />
-            <Navbar />
             <div className="container">
                 {props.children}
             </div>
@@ -23,4 +21,4 @@ const index = (props) => {
     )
 }
 
-export default index
+export default AdminIndex

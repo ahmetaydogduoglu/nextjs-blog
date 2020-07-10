@@ -9,10 +9,11 @@ export default function index({ content }) {
                 </div>
                 <div className="card-body">
                     <p className="card-text">{content.postContent}</p>
+
                 </div>
                 <div className="card-footer text-muted">
-                    2 days ago
-                 </div>
+                    <button className="btn btn-warning">Show All</button>
+                </div>
             </div>
             <style jsx>
                 {

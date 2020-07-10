@@ -7,7 +7,6 @@ export default function Home(props) {
     <Layout title={"Home"}>
       <div className="home-container">
         <h1>My Posts</h1>
-
         <div className="row justify-content-start">
           {
             props.posts.map(item => (
@@ -19,7 +18,6 @@ export default function Home(props) {
 
         </div>
       </div>
-
       <style jsx>
         {
           `
