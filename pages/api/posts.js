@@ -1,19 +1,30 @@
-import { savePost } from "../../controller/postMethod"
-
+import firebase from "../../lib/firebaseConnect";
 export default (req, res) => {
     switch (req.method) {
         case "POST":
             const { title, postContet } = req.body
-            savePost({ title, postContet });
             if (title === undefined || !postContet === undefined) {
                 res.status(400).json({ message: "content must include postContent and title" })
+            } else {
+                firebase().firestore().collection("posts").add({ title: "merhaba" })
+                    .then(() => {
+                        req.status(200).json({ message: "succsess" })
+                    })
+                    .catch(err => {
+                        console.log(err);
+                        res.status(500).json(err)
+                    })
             }
-            res.status(200).json(req.body)
             break;
         case "GET":
-            res.status(200).json({
-                posts: "ahnet"
-            })
+            firebase().firestore().collection("posts").get()
+                .then(snapshot => {
+                    req.status(200).json(snapshot)
+                })
+                .catch(err => {
+                    console.log(err);
+                    res.status(500).json(err)
+                })
             break;
         default:
             break;
