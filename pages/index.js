@@ -1,17 +1,25 @@
-import Layout from "../components/Layout/index"
 import callFetch from "../API/callFetch";
-
+//components
+import Layout from "../components/Layout/index";
+import Card from "../components/PostCard/index";
 export default function Home(props) {
   return (
     <Layout title={"Home"}>
       <div className="home-container">
         <h1>My Posts</h1>
-        {
-          props.posts.map(item => (
-            <p>{item.title}</p>
-          ))
-        }
+
+        <div className="row justify-content-start">
+          {
+            props.posts.map(item => (
+              <div className="col-lg-4" >
+                <Card content={item} />
+              </div>
+            ))
+          }
+
+        </div>
       </div>
+
       <style jsx>
         {
           `
@@ -22,6 +30,21 @@ export default function Home(props) {
             h1{
               color:#454545;
               margin-top:15px
+            }
+            .col-lg-4{
+              margin-bottom:15px;
+            }
+            @media screen and (max-width: 600px){
+              .col-lg-4{
+         
+                box-sizing: border-box;
+                display:flex;
+                align-self:center;
+                justify-content:center;
+                flex-direction:column;
+                align-items:center;
+                width:100%;
+              }
             }
           `
         }
