@@ -12,7 +12,10 @@ export default function Home(props) {
             .home-container{
               width:100%;
               text-align:center;
-              background:red
+            }
+            h1{
+              color:#454545;
+              margin-top:15px
             }
           `
         }

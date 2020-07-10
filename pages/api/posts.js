@@ -2,13 +2,13 @@ import firebase from "../../lib/firebaseConnect";
 export default (req, res) => {
     switch (req.method) {
         case "POST":
-            const { title, postContet } = req.body
-            if (title === undefined || !postContet === undefined) {
+            const { title, postContent } = req.body
+            if (title === undefined || !postContent === undefined) {
                 res.status(400).json({ message: "content must include postContent and title" })
             } else {
-                firebase().firestore().collection("posts").add({ title: "merhaba" })
+                firebase().firestore().collection("posts").add({ title, postContent, date: new Date().getTime() })
                     .then(() => {
-                        req.status(200).json({ message: "succsess" })
+                        res.status(200).json({ message: "succsess" })
                     })
                     .catch(err => {
                         console.log(err);
@@ -19,7 +19,11 @@ export default (req, res) => {
         case "GET":
             firebase().firestore().collection("posts").get()
                 .then(snapshot => {
-                    req.status(200).json(snapshot)
+                    let posts = []
+                    snapshot.docs.forEach(doc => { posts = posts.concat(doc.data()) })
+                    res.status(200).json({
+                        posts: posts
+                    })
                 })
                 .catch(err => {
                     console.log(err);
