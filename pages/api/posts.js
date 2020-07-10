@@ -6,12 +6,11 @@ export default (req, res) => {
             if (title === undefined || !postContent === undefined) {
                 res.status(400).json({ message: "content must include postContent and title" })
             } else {
-                firebase().firestore().collection("posts").add({ title, postContent, date: new Date().getTime() })
+                firebase().firestore().collection("posts").add({ title, postContent, date: new Date() })
                     .then(() => {
                         res.status(200).json({ message: "succsess" })
                     })
                     .catch(err => {
-                        console.log(err);
                         res.status(500).json(err)
                     })
             }
@@ -26,7 +25,6 @@ export default (req, res) => {
                     })
                 })
                 .catch(err => {
-                    console.log(err);
                     res.status(500).json(err)
                 })
             break;

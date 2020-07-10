@@ -1,10 +1,16 @@
 import Layout from "../components/Layout/index"
+import callFetch from "../API/callFetch";
+
 export default function Home(props) {
   return (
     <Layout title={"Home"}>
       <div className="home-container">
         <h1>My Posts</h1>
-
+        {
+          props.posts.map(item => (
+            <p>{item.title}</p>
+          ))
+        }
       </div>
       <style jsx>
         {
@@ -25,7 +31,16 @@ export default function Home(props) {
 }
 
 Home.getInitialProps = async function () {
-  return {
-    data: "merhaba"
+  try {
+    const data = await callFetch("/posts")
+    return {
+      posts: data.posts,
+      error: null
+    }
+  } catch (error) {
+    return {
+      posts: null,
+      error: new Error("There is a problem.")
+    }
   }
 }
