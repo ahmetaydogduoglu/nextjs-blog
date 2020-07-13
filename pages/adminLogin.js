@@ -19,8 +19,6 @@ export default function Admin(props) {
                     </div>
                 </div>
             </AdminLayout>
-
-
             <style jsx>
                 {
                     `

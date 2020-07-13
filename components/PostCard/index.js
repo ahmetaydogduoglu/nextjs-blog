@@ -5,7 +5,9 @@ export default function index({ content }) {
         <>
             <div className="card text-center">
                 <div className="card-header">
+                    <h5>
                     {content.title}
+                    </h5>
                 </div>
                 <div className="card-body">
                     <p className="card-text">{content.postContent}</p>
@@ -26,7 +28,7 @@ export default function index({ content }) {
                     p{
                         overflow: hidden;
                         display: -webkit-box;
-                        -webkit-line-clamp: 7;
+                        -webkit-line-clamp: 6;
                         -webkit-box-orient: vertical;
                     }
                     `
